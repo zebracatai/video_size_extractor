@@ -172,7 +172,7 @@ async def main():
     video_urls = sync_video_urls(pickle_path = pickle_path,
                                  csv_file_name=CSV_FILE_NAME)
     
-    video_url_chunks = split_video_urls(video_urls[:1000], num_producers)
+    video_url_chunks = split_video_urls(video_urls, num_producers)
     queue = asyncio.Queue(maxsize=queue_size)
     
     producers = [asyncio.create_task(producer(queue, i, chunk)) for i, chunk in enumerate(video_url_chunks)]
